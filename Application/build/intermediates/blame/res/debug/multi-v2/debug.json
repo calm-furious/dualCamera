@@ -112,38 +112,6 @@
             ]
         },
         {
-            "outputFile": "D:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\values-v24_values-v24.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Junchi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\405883369062c6251836fd6cef04cb94\\res\\values-v24\\values-v24.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,212",
-                        "endColumns": "156,134",
-                        "endOffsets": "207,342"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Junchi\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\d231ccc9f86d289b4d932655de7033f4\\res\\values-v24\\values-v24.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,121,182,248",
-                        "endColumns": "65,60,65,66",
-                        "endOffsets": "116,177,243,310"
-                    },
-                    "to": {
-                        "startLines": "4,5,6,7",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "347,413,474,540",
-                        "endColumns": "65,60,65,66",
-                        "endOffsets": "408,469,535,602"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\values-sr_values-sr.arsc.flat",
             "map": [
                 {
@@ -171,6 +139,38 @@
                         "startOffsets": "105,214,317,423,509,613,731,812,892,980,1085,1193,1294,1398,1506,1607,1774,1871",
                         "endColumns": "108,102,105,85,103,117,80,79,87,104,107,100,103,107,100,166,96,83",
                         "endOffsets": "209,312,418,504,608,726,807,887,975,1080,1188,1289,1393,1501,1602,1769,1866,1950"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\values-v24_values-v24.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Junchi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\405883369062c6251836fd6cef04cb94\\res\\values-v24\\values-v24.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,212",
+                        "endColumns": "156,134",
+                        "endOffsets": "207,342"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Junchi\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\d231ccc9f86d289b4d932655de7033f4\\res\\values-v24\\values-v24.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,121,182,248",
+                        "endColumns": "65,60,65,66",
+                        "endOffsets": "116,177,243,310"
+                    },
+                    "to": {
+                        "startLines": "4,5,6,7",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "347,413,474,540",
+                        "endColumns": "65,60,65,66",
+                        "endOffsets": "408,469,535,602"
                     }
                 }
             ]
@@ -448,6 +448,21 @@
             ]
         },
         {
+            "outputFile": "D:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\values-h720dp-v13_values-h720dp-v13.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Junchi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\405883369062c6251836fd6cef04cb94\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "D:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\values-it_values-it.arsc.flat",
             "map": [
                 {
@@ -475,21 +490,6 @@
                         "startOffsets": "1949",
                         "endColumns": "100",
                         "endOffsets": "2045"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\values-h720dp-v13_values-h720dp-v13.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Junchi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\405883369062c6251836fd6cef04cb94\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "66",
-                        "endOffsets": "117"
                     }
                 }
             ]
@@ -833,38 +833,6 @@
             ]
         },
         {
-            "outputFile": "D:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\values-et_values-et.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Junchi\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\9e88ff0b18b480ad4257ec3cb271a608\\res\\values-et\\values-et.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "1965",
-                        "endColumns": "100",
-                        "endOffsets": "2061"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Junchi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\405883369062c6251836fd6cef04cb94\\res\\values-et\\values-et.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,222,329,440,526,628,745,825,903,986,1097,1202,1301,1411,1512,1615,1781,1883",
-                        "endColumns": "116,106,110,85,101,116,79,77,82,110,104,98,109,100,102,165,101,81",
-                        "endOffsets": "217,324,435,521,623,740,820,898,981,1092,1197,1296,1406,1507,1610,1776,1878,1960"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\values-nl_values-nl.arsc.flat",
             "map": [
                 {
@@ -892,6 +860,38 @@
                         "startOffsets": "1970",
                         "endColumns": "100",
                         "endOffsets": "2066"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\res\\merged\\debug\\values-et_values-et.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Junchi\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\9e88ff0b18b480ad4257ec3cb271a608\\res\\values-et\\values-et.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "1965",
+                        "endColumns": "100",
+                        "endOffsets": "2061"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Junchi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\405883369062c6251836fd6cef04cb94\\res\\values-et\\values-et.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,222,329,440,526,628,745,825,903,986,1097,1202,1301,1411,1512,1615,1781,1883",
+                        "endColumns": "116,106,110,85,101,116,79,77,82,110,104,98,109,100,102,165,101,81",
+                        "endOffsets": "217,324,435,521,623,740,820,898,981,1092,1197,1296,1406,1507,1610,1776,1878,1960"
                     }
                 }
             ]
