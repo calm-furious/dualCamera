@@ -183,6 +183,7 @@ public class Camera2BasicFragment extends Fragment
      * An {@link AutoFitTextureView} for camera preview.
      */
     private AutoFitTextureView mTextureView;
+    private AutoFitTextureView mTextureView2;
 
     /**
      * A {@link CameraCaptureSession } for camera preview.
@@ -193,7 +194,6 @@ public class Camera2BasicFragment extends Fragment
      * A reference to the opened {@link CameraDevice}.
      */
     private CameraDevice mCameraDevice;
-    //todo 2
 
     /**
      * The {@link Size} of camera preview.
@@ -211,7 +211,6 @@ public class Camera2BasicFragment extends Fragment
             // This method is called when the camera is opened.  We start camera preview here.
             mCameraOpenCloseLock.release();
             mCameraDevice = cameraDevice;
-            //todo 2
             createCameraPreviewSession();
         }
 
@@ -256,6 +255,7 @@ public class Camera2BasicFragment extends Fragment
      */
     private File mFile1;
     private File mFile2;
+    String time;
 
     /**
      * This a callback object for the {@link ImageReader}. "onImageAvailable" will be called when a
@@ -267,16 +267,22 @@ public class Camera2BasicFragment extends Fragment
 
         @Override
         public void onImageAvailable(ImageReader reader) {
+            time = String.valueOf(System.currentTimeMillis());
+            mFile1 = new File(getActivity().getExternalFilesDir(null), time+"R.jpg");
+
             mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile1));
         }
 
     };
 
     private final ImageReader.OnImageAvailableListener mOnImageAvailableListener2
+
             = new ImageReader.OnImageAvailableListener() {
 
         @Override
         public void onImageAvailable(ImageReader reader) {
+            time = String.valueOf(System.currentTimeMillis());
+            mFile2 = new File(getActivity().getExternalFilesDir(null), time+"L.jpg");
             mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile2));
         }
 
@@ -467,13 +473,13 @@ public class Camera2BasicFragment extends Fragment
         view.findViewById(R.id.info).setOnClickListener(this);
         //used for preview surface
         mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
+        mTextureView2 = (AutoFitTextureView) view.findViewById(R.id.texture2);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mFile1 = new File(getActivity().getExternalFilesDir(null), "R"+ idx+".jpg");
-        mFile2 = new File(getActivity().getExternalFilesDir(null), "L"+ idx+".jpg");
+
     }
 
     @Override
@@ -485,12 +491,12 @@ public class Camera2BasicFragment extends Fragment
         // available, and "onSurfaceTextureAvailable" will not be called. In that case, we can open
         // a camera and start preview from here (otherwise, we wait until the surface is ready in
         // the SurfaceTextureListener).
-        if (mTextureView.isAvailable()) {
+        if (mTextureView2.isAvailable()) {
             openCamera(mTextureView.getWidth(), mTextureView.getHeight());
         } else {
-            mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
-
+            mTextureView2.setSurfaceTextureListener(mSurfaceTextureListener);
         }
+
     }
 
     @Override
@@ -570,14 +576,7 @@ public class Camera2BasicFragment extends Fragment
             Size largest2 = Collections.max(
                     Arrays.asList(map2.getOutputSizes(ImageFormat.JPEG)),
                     new CompareSizesByArea());
-            mImageReader1 = ImageReader.newInstance(largest1.getWidth(), largest1.getHeight(),
-                    ImageFormat.JPEG, /*maxImages*/2);
-            mImageReader2 = ImageReader.newInstance(largest2.getWidth(), largest2.getHeight(),
-                    ImageFormat.JPEG, /*maxImages*/2);
-            mImageReader1.setOnImageAvailableListener(
-                        mOnImageAvailableListener1, mBackgroundHandler);
-            mImageReader2.setOnImageAvailableListener(
-                    mOnImageAvailableListener2, mBackgroundHandler);
+
 
             // Find out if we need to swap dimension to get the preview size relative to sensor
             // coordinate.
@@ -630,21 +629,33 @@ public class Camera2BasicFragment extends Fragment
             mPreviewSize = chooseOptimalSize(map0.getOutputSizes(SurfaceTexture.class),
                     rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth,
                     maxPreviewHeight, largest0);
-            //todo 是否要看两个预览
+            //必须两个预览一起，只调3会bug，只调2没问题
             // We fit the aspect ratio of TextureView to the size of preview we picked.
             int orientation = getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 mTextureView.setAspectRatio(
                         mPreviewSize.getWidth(), mPreviewSize.getHeight());
+                mTextureView2.setAspectRatio(
+                        mPreviewSize.getWidth(), mPreviewSize.getHeight());
+
             } else {
                 mTextureView.setAspectRatio(
+                        mPreviewSize.getHeight(), mPreviewSize.getWidth());
+                mTextureView2.setAspectRatio(
                         mPreviewSize.getHeight(), mPreviewSize.getWidth());
             }
 
             // Check if the flash is supported.
             Boolean available = characteristics0.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
             mFlashSupported = available == null ? false : available;
-
+            mImageReader1 = ImageReader.newInstance(largest1.getWidth(), largest1.getHeight(),
+                    ImageFormat.JPEG, /*maxImages*/2);
+            mImageReader2 = ImageReader.newInstance(largest2.getWidth(), largest2.getHeight(),
+                    ImageFormat.JPEG, /*maxImages*/2);
+            mImageReader1.setOnImageAvailableListener(
+                    mOnImageAvailableListener1, mBackgroundHandler);
+            mImageReader2.setOnImageAvailableListener(
+                    mOnImageAvailableListener2, mBackgroundHandler);
             DualCamera dualCamera = new DualCamera("1","2","3");
             mCameraId = "1";
             return;
@@ -743,27 +754,34 @@ public class Camera2BasicFragment extends Fragment
     private void createCameraPreviewSession() {
         try {
             SurfaceTexture texture = mTextureView.getSurfaceTexture();
+            SurfaceTexture texture2 = mTextureView2.getSurfaceTexture();
             assert texture != null;
+            assert texture2 != null;
             // We configure the size of default buffer to be the size of camera preview we want.
-            //texture1.setDefaultBufferSize(mPreviewSize.getWidth(), mPreviewSize.getHeight());
+            texture.setDefaultBufferSize(mPreviewSize.getWidth(), mPreviewSize.getHeight());
+            texture2.setDefaultBufferSize(mPreviewSize.getWidth(), mPreviewSize.getHeight());
 
             // This is the output Surface we need to start preview.
             Surface surface = new Surface(texture);
+            Surface surface2 = new Surface(texture2);
 
             // We set up a CaptureRequest.Builder with the output Surface.
             mPreviewRequestBuilder
                     = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             mPreviewRequestBuilder.addTarget(surface);
+            mPreviewRequestBuilder.addTarget(surface2);
 
 
-            //todo add session configs and modify captureSession
-            OutputConfiguration outputConfigsLogical = new OutputConfiguration(surface);
-            OutputConfiguration outputConfigsPhysical1 = new OutputConfiguration(mImageReader1.getSurface());
-            outputConfigsPhysical1.setPhysicalCameraId("2");
-            OutputConfiguration outputConfigsPhysical2 = new OutputConfiguration(mImageReader2.getSurface());
-            outputConfigsPhysical2.setPhysicalCameraId("3");
+            OutputConfiguration opc1 = new OutputConfiguration(surface);
+            opc1.setPhysicalCameraId("2");
+            OutputConfiguration opc2 = new OutputConfiguration(surface2);
+            opc2.setPhysicalCameraId("3");
+            OutputConfiguration opc3 = new OutputConfiguration(mImageReader1.getSurface());
+            opc3.setPhysicalCameraId("2");
+            OutputConfiguration opc4 = new OutputConfiguration(mImageReader2.getSurface());
+            opc4.setPhysicalCameraId("3");
 
-            List<OutputConfiguration> outputConfigsAll = Arrays.asList(outputConfigsLogical,outputConfigsPhysical1,outputConfigsPhysical2);
+            List<OutputConfiguration> outputConfigsAll = Arrays.asList(opc1,opc2,opc3,opc4);
             // Here, we create a CameraCaptureSession for camera preview.
             SessionConfiguration sessionConfiguration = new SessionConfiguration(SessionConfiguration.SESSION_REGULAR,outputConfigsAll, AsyncTask.SERIAL_EXECUTOR,
                     new CameraCaptureSession.StateCallback(){
@@ -799,41 +817,6 @@ public class Camera2BasicFragment extends Fragment
                         }
                     });
             mCameraDevice.createCaptureSession(sessionConfiguration);
-//            mCameraDevice.createCaptureSession(Arrays.asList(surface, mImageReader1.getSurface(), mImageReader2.getSurface()),
-//                    new CameraCaptureSession.StateCallback() {
-//
-//                        @Override
-//                        public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
-//                            // The camera is already closed
-//                            if (null == mCameraDevice) {
-//                                return;
-//                            }
-//
-//                            // When the session is ready, we start displaying the preview.
-//                            mCaptureSession = cameraCaptureSession;
-//                            try {
-//                                // Auto focus should be continuous for camera preview.
-//                                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
-//                                        CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
-//                                // Flash is automatically enabled when necessary.
-//                                setAutoFlash(mPreviewRequestBuilder);
-//
-//                                // Finally, we start displaying the camera preview.
-//                                mPreviewRequest = mPreviewRequestBuilder.build();
-//                                mCaptureSession.setRepeatingRequest(mPreviewRequest,
-//                                        mCaptureCallback, mBackgroundHandler);
-//                            } catch (CameraAccessException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onConfigureFailed(
-//                                @NonNull CameraCaptureSession cameraCaptureSession) {
-//                            showToast("Failed");
-//                        }
-//                    }, null
-//            );
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
@@ -849,7 +832,7 @@ public class Camera2BasicFragment extends Fragment
      */
     private void configureTransform(int viewWidth, int viewHeight) {
         Activity activity = getActivity();
-        if (null == mTextureView || null == mPreviewSize || null == activity) {
+        if (null == mTextureView|| null == mTextureView2 || null == mPreviewSize || null == activity) {
             return;
         }
         int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
@@ -870,6 +853,7 @@ public class Camera2BasicFragment extends Fragment
             matrix.postRotate(180, centerX, centerY);
         }
         mTextureView.setTransform(matrix);
+        mTextureView2.setTransform(matrix);
     }
 
     /**
@@ -877,7 +861,6 @@ public class Camera2BasicFragment extends Fragment
      */
     private void takePicture() {
         lockFocus();
-
     }
 
     /**
@@ -930,31 +913,25 @@ public class Camera2BasicFragment extends Fragment
             }
             // This is the CaptureRequest.Builder that we use to take a picture.
 
-            // todo extra Why combined Request not working with one of the physical camera?
-//            final CaptureRequest.Builder combinedRequest =
-//                    mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
-//            combinedRequest.addTarget(mImageReader1.getSurface());
-//            combinedRequest.addTarget(mImageReader2.getSurface());
-
+            //这里template不能用still_capture，猜测会造成两个摄像头抢而导致失败。除了这个其他template都可以
+            //template_record 3摄像头出来是黑的
+            //template_zero_shutter_lag延时严重
+            //template_video_snapshot 34ms 拍摄之后卡顿
+            //template_preview 20ms
             final CaptureRequest.Builder captureRequest1 =
-                    mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
+                    mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             captureRequest1.addTarget(mImageReader1.getSurface());
-            final CaptureRequest.Builder captureRequest2 =
-                    mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
-            captureRequest2.addTarget(mImageReader2.getSurface());
+            captureRequest1.addTarget(mImageReader2.getSurface());
 
+            captureRequest1.set(CaptureRequest.DISTORTION_CORRECTION_MODE, CameraMetadata.DISTORTION_CORRECTION_MODE_OFF);
             // Use the same AE and AF modes as the preview.
             captureRequest1.set(CaptureRequest.CONTROL_AF_MODE,
                     CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
             setAutoFlash(captureRequest1);
-            captureRequest2.set(CaptureRequest.CONTROL_AF_MODE,
-                    CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
-            setAutoFlash(captureRequest2);
 
             // Orientation
             int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
             captureRequest1.set(CaptureRequest.JPEG_ORIENTATION, getOrientation(rotation));
-            captureRequest2.set(CaptureRequest.JPEG_ORIENTATION, getOrientation(rotation));
 
             CameraCaptureSession.CaptureCallback CaptureCallback1
                     = new CameraCaptureSession.CaptureCallback() {
@@ -963,28 +940,16 @@ public class Camera2BasicFragment extends Fragment
                 public void onCaptureCompleted(@NonNull CameraCaptureSession session,
                                                @NonNull CaptureRequest request,
                                                @NonNull TotalCaptureResult result) {
-                    //showToast("Saved: ");
-                    //Log.d(TAG, mFile.toString());
-                    //unlockFocus();
-                }
-            };
-            CameraCaptureSession.CaptureCallback CaptureCallback2
-                    = new CameraCaptureSession.CaptureCallback() {
-
-                @Override
-                public void onCaptureCompleted(@NonNull CameraCaptureSession session,
-                                               @NonNull CaptureRequest request,
-                                               @NonNull TotalCaptureResult result) {
-                    showToast("Saved: ");
-                    //Log.d(TAG, mFile.toString());
+                    showToast("Saved: "+mFile2.toString());
+                    Log.d(TAG, mFile2.toString());
                     unlockFocus();
                 }
             };
 
-            //mCaptureSession.stopRepeating();
-            //mCaptureSession.abortCaptures();
+            mCaptureSession.stopRepeating();
+            mCaptureSession.abortCaptures();
             mCaptureSession.capture(captureRequest1.build(), CaptureCallback1, null);
-            mCaptureSession.capture(captureRequest2.build(), CaptureCallback2, null);
+
             idx+=1;
         } catch (CameraAccessException e) {
             e.printStackTrace();

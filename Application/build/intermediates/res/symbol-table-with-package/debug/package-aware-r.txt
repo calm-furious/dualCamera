@@ -707,6 +707,7 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id texture
+id texture2
 id time
 id title
 id titleDividerNoCustom

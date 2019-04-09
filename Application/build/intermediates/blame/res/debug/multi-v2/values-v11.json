@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+            "outputFile": "D:\\android-Camera2Basic-master\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
             "map": [
                 {
-                    "source": "D:\\SJTU\\android-Camera2Basic-master\\Application\\src\\main\\res\\values-v11\\template-styles.xml",
+                    "source": "D:\\android-Camera2Basic-master\\Application\\src\\main\\res\\values-v11\\template-styles.xml",
                     "from": {
                         "startLines": "19",
                         "startColumns": "4",

@@ -16,11 +16,13 @@
 
 package com.example.android.camera2basic;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
-
+@RequiresApi(api = Build.VERSION_CODES.P)
 public class CameraActivity extends AppCompatActivity {
     Camera2BasicFragment camera2BasicFragment= null;
     @Override
@@ -34,6 +36,7 @@ public class CameraActivity extends AppCompatActivity {
                     .commit();
         }
     }
+
     @Override
     public boolean onKeyDown (int keyCode, KeyEvent event) {
         switch (keyCode) {

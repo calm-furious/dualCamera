@@ -1,4 +1,4 @@
-#Wed Apr 03 21:51:04 CST 2019
+#Wed Apr 10 11:55:44 CST 2019
 path.1=classes.dex
 path.0=classes.dex
 renamed.10=classes11.dex
@@ -10,19 +10,19 @@ renamed.5=classes6.dex
 renamed.4=classes5.dex
 renamed.3=classes4.dex
 renamed.2=classes3.dex
-base.9=D\:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\21
+base.9=D\:\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\13
 renamed.1=classes2.dex
-base.8=D\:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\13
+base.8=D\:\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\11
 renamed.0=classes.dex
-base.7=D\:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\12
-base.6=D\:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\15
-base.5=D\:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\14
-base.4=D\:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\17
-base.3=D\:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\16
-base.2=D\:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\19
-base.1=D\:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\18
-base.0=D\:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\20
-base.10=D\:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\11
+base.7=D\:\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\14
+base.6=D\:\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\17
+base.5=D\:\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\12
+base.4=D\:\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\15
+base.3=D\:\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\18
+base.2=D\:\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\16
+base.1=D\:\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\19
+base.0=D\:\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\20
+base.10=D\:\\android-Camera2Basic-master\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\21
 path.10=classes.dex
 path.9=classes.dex
 path.8=classes.dex

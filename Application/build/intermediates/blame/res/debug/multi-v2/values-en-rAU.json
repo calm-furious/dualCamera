@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\SJTU\\android-Camera2Basic-master\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rAU\\values-en-rAU.xml",
+            "outputFile": "D:\\android-Camera2Basic-master\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rAU\\values-en-rAU.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Junchi\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\9e88ff0b18b480ad4257ec3cb271a608\\res\\values-en-rAU\\values-en-rAU.xml",
