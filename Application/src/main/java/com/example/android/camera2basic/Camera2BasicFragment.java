@@ -73,6 +73,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
@@ -80,6 +82,7 @@ import java.util.concurrent.TimeUnit;
 @RequiresApi(api = Build.VERSION_CODES.P)
 public class Camera2BasicFragment extends Fragment
         implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
+    int flag =0 ;
     private class DualCamera{
         String logicalId;
         String physicalId1;
@@ -255,7 +258,8 @@ public class Camera2BasicFragment extends Fragment
      */
     private File mFile1;
     private File mFile2;
-    String time;
+    int idx1=0;
+    int idx2=0;
 
     /**
      * This a callback object for the {@link ImageReader}. "onImageAvailable" will be called when a
@@ -267,8 +271,8 @@ public class Camera2BasicFragment extends Fragment
 
         @Override
         public void onImageAvailable(ImageReader reader) {
-            time = String.valueOf(System.currentTimeMillis());
-            mFile1 = new File(getActivity().getExternalFilesDir(null), time+"R.jpg");
+            idx1+=1;
+            mFile1 = new File(getActivity().getExternalFilesDir(null), String.valueOf(idx1)+"R.jpg");
 
             mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile1));
         }
@@ -281,8 +285,8 @@ public class Camera2BasicFragment extends Fragment
 
         @Override
         public void onImageAvailable(ImageReader reader) {
-            time = String.valueOf(System.currentTimeMillis());
-            mFile2 = new File(getActivity().getExternalFilesDir(null), time+"L.jpg");
+            idx2 +=1;
+            mFile2 = new File(getActivity().getExternalFilesDir(null), String.valueOf(idx2)+"L.jpg");
             mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile2));
         }
 
@@ -877,6 +881,7 @@ public class Camera2BasicFragment extends Fragment
             mCaptureSession.capture(mPreviewRequestBuilder.build(), mCaptureCallback,
                     mBackgroundHandler);
 
+
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
@@ -948,7 +953,7 @@ public class Camera2BasicFragment extends Fragment
 
             mCaptureSession.stopRepeating();
             mCaptureSession.abortCaptures();
-            mCaptureSession.capture(captureRequest1.build(), CaptureCallback1, null);
+            mCaptureSession.capture(captureRequest1.build(), CaptureCallback1, mBackgroundHandler);
 
             idx+=1;
         } catch (CameraAccessException e) {
@@ -987,6 +992,26 @@ public class Camera2BasicFragment extends Fragment
             Log.d("cjc","4");
             mCaptureSession.setRepeatingRequest(mPreviewRequest, mCaptureCallback,
                     mBackgroundHandler);
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        Thread.sleep(250); // 休眠1秒
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    if(flag==1){
+                        captureStillPicture();
+                    }
+
+                }
+            }).start();
+
+
+
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }

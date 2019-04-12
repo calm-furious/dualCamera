@@ -22,14 +22,16 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
+
 @RequiresApi(api = Build.VERSION_CODES.P)
 public class CameraActivity extends AppCompatActivity {
-    Camera2BasicFragment camera2BasicFragment= null;
+    Camera2BasicFragment camera2BasicFragment = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        camera2BasicFragment =  Camera2BasicFragment.newInstance();
+        camera2BasicFragment = Camera2BasicFragment.newInstance();
         if (null == savedInstanceState) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, camera2BasicFragment)
@@ -38,20 +40,39 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown (int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
 
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-                camera2BasicFragment.captureStillPicture();
+                if(camera2BasicFragment.flag==0) camera2BasicFragment.captureStillPicture();
+                camera2BasicFragment.flag = 1;
+
                 return true;
 
             case KeyEvent.KEYCODE_VOLUME_UP:
                 camera2BasicFragment.captureStillPicture();
+
                 return true;
         }
         return true;
         //don't change volume
         //super.onKeyDown (keyCode, event)
     }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                camera2BasicFragment.flag = 0;
+                return true;
+
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                camera2BasicFragment.flag = 0;
+                return true;
+        }
+        return true;
+    }
+
 
 }
