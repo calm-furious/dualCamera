@@ -2,13 +2,13 @@
 <instant-run
     abi="arm64-v8a,armeabi-v7a,armeabi"
     api-level="28"
-    build-mode="COLD"
+    build-mode="FULL"
     density="560dpi"
     format="10"
     plugin-version="3.2.0"
-    timestamp="1555093332932"
+    timestamp="1555117869476"
     token="-813707096792375197"
-    verifier="COLD_SWAP_REQUESTED" >
+    verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
@@ -23,62 +23,54 @@
         name="verifier"
         duration="0" />
 
-    <build
-        build-mode="FULL"
-        timestamp="1555093057297"
-        verifier="FULL_BUILD_REQUESTED" >
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\resources\instant-run\debug\resources-debug.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\dep\dependencies.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_1.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_5.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_4.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\android-Camera2Basic-master\Application\build\intermediates\instant-run-apk\debug\Application-debug.apk"
-            type="SPLIT_MAIN" />
-    </build>
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_2.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\dep\dependencies.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\resources\instant-run\debug\resources-debug.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_1.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_0.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_5.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_6.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_8.apk"
+        type="SPLIT" />
+    <artifact
+        location="D:\android-Camera2Basic-master\Application\build\intermediates\instant-run-apk\debug\Application-debug.apk"
+        type="SPLIT_MAIN" />
+
     <build
         build-mode="COLD"
-        ir-eligibility="FIELD_REMOVED"
-        timestamp="1555093298192"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1555145781091"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="D:\android-Camera2Basic-master\Application\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
     </build>
-    <build
-        build-mode="COLD"
-        timestamp="1555093332932"
-        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>

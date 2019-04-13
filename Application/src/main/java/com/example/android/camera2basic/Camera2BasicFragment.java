@@ -272,7 +272,7 @@ public class Camera2BasicFragment extends Fragment
         @Override
         public void onImageAvailable(ImageReader reader) {
             idx1+=1;
-            mFile1 = new File(getActivity().getExternalFilesDir(null), String.valueOf(idx1)+"R.jpg");
+            mFile1 = new File(getActivity().getExternalFilesDir(null), "R"+String.valueOf(idx1)+".jpg");
 
             mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile1));
         }
@@ -286,7 +286,7 @@ public class Camera2BasicFragment extends Fragment
         @Override
         public void onImageAvailable(ImageReader reader) {
             idx2 +=1;
-            mFile2 = new File(getActivity().getExternalFilesDir(null), String.valueOf(idx2)+"L.jpg");
+            mFile2 = new File(getActivity().getExternalFilesDir(null),"L"+String.valueOf(idx2)+".jpg");
             mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile2));
         }
 
@@ -537,6 +537,8 @@ public class Camera2BasicFragment extends Fragment
      * @param width  The width of available size for camera preview
      * @param height The height of available size for camera preview
      */
+    float a = 0;
+    float a2 = 0;
     @SuppressWarnings("SuspiciousNameCombination")
     private void setUpCameraOutputs(int width, int height) {
         Activity activity = getActivity();
@@ -582,6 +584,8 @@ public class Camera2BasicFragment extends Fragment
                     new CompareSizesByArea());
 
 
+//            a = characteristics1.get(CameraCharacteristics.LENS_INFO_MINIMUM_FOCUS_DISTANCE);
+//            a2 = characteristics2.get(CameraCharacteristics.LENS_INFO_MINIMUM_FOCUS_DISTANCE);
             // Find out if we need to swap dimension to get the preview size relative to sensor
             // coordinate.
             int displayRotation = activity.getWindowManager().getDefaultDisplay().getRotation();
@@ -801,7 +805,8 @@ public class Camera2BasicFragment extends Fragment
                             try {
                                 // Auto focus should be continuous for camera preview.
                                 mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
-                                        CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
+                                        CaptureRequest.CONTROL_AF_MODE_OFF);
+                                mPreviewRequestBuilder.set(CaptureRequest.LENS_FOCUS_DISTANCE,0.0f);
                                 // Flash is automatically enabled when necessary.
                                 setAutoFlash(mPreviewRequestBuilder);
 
@@ -873,8 +878,8 @@ public class Camera2BasicFragment extends Fragment
     private void lockFocus() {
         try {
             // This is how to tell the camera to lock focus.
-            mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER,
-                    CameraMetadata.CONTROL_AF_TRIGGER_START);
+//            mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER,
+//                    CameraMetadata.CONTROL_AF_TRIGGER_START);
             // Tell #mCaptureCallback to wait for the lock.
             mState = STATE_WAITING_LOCK;
             Log.d("cjc","1");
@@ -931,7 +936,8 @@ public class Camera2BasicFragment extends Fragment
             captureRequest1.set(CaptureRequest.DISTORTION_CORRECTION_MODE, CameraMetadata.DISTORTION_CORRECTION_MODE_OFF);
             // Use the same AE and AF modes as the preview.
             captureRequest1.set(CaptureRequest.CONTROL_AF_MODE,
-                    CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
+                    CaptureRequest.CONTROL_AF_MODE_OFF);
+            captureRequest1.set(CaptureRequest.LENS_FOCUS_DISTANCE,0.0f);
             setAutoFlash(captureRequest1);
 
             // Orientation
@@ -982,8 +988,8 @@ public class Camera2BasicFragment extends Fragment
     private void unlockFocus() {
         try {
             // Reset the auto-focus trigger
-            mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER,
-                    CameraMetadata.CONTROL_AF_TRIGGER_CANCEL);
+//            mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER,
+//                    CameraMetadata.CONTROL_AF_TRIGGER_CANCEL);
             setAutoFlash(mPreviewRequestBuilder);
             mCaptureSession.capture(mPreviewRequestBuilder.build(), mCaptureCallback,
                     mBackgroundHandler);
