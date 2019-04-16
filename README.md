@@ -1,4 +1,7 @@
+# dualCamera
+Android dual camera: capturing both pics from both physical cameras on the front(Pixel 3XL) at the same time. @API.28
 
+modified from:
 Android Camera2Basic Sample
 ===================================
 
@@ -88,3 +91,6 @@ distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
 License for the specific language governing permissions and limitations under
 the License.
+
+
+
